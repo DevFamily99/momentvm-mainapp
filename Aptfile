@@ -1,0 +1,4 @@
+# This file serves for the heroku apt buildpack and is required for libvips
+libglib2.0-0
+libglib2.0-dev
+libpoppler-glib8

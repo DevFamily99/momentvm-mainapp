@@ -1,0 +1,2 @@
+class PublishingLocale < ApplicationRecord
+end

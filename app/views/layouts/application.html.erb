@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Momentvm Content Management</title>
+    <%= csrf_meta_tags %>
+    <%#= stylesheet_link_tag 'stylesheets', media: 'all' %>
+    <%#= javascript_packs_with_chunks_tag 'application' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+
+  <body class="<%= controller_name %>-<%= action_name %> <%= controller_name %>">
+    <!-- <div class="release-notification"></div> -->
+
+    <main-grid>
+
+      <% if flash[:notice] || flash[:alert] %>
+      <top-notice>
+        <div id="notice">
+          <p class="notice"><%= flash[:notice] %></p>
+          <p class="alert"><%= flash[:alert] %></p>
+        </div>
+      </top-notice>
+      <% end %>
+
+      <header>
+        <%= render partial: "layouts/header" %>
+      </header>
+      <layout-main>
+        <main>
+          <%= yield %>
+        </main>
+      </layout-main>
+      <footer>
+        <p>
+          MOMENTVM Content Cloud © 2020 v<%= ENV['APP_VERSION'] %>
+        </p>
+      </footer>
+    </main-grid>
+  </body>
+</html>

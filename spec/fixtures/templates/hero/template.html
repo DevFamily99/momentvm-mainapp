@@ -1,0 +1,48 @@
+<section class="mv-component mv-hero-1" id="module-#(module_id)-id" }>
+    <div class="mv-hero-1__container">
+        <div id="#(image_unique_id)" class="mv-hero-1__image"
+            style="background-image:url('#if(image != ""){dynamicimage::legacy:#(image)::}else{https://via.placeholder.com/1600x800}')">
+        </div>
+
+        <div class="mv-hero-1__textbox">
+            <h1 style="color:#(headline.color)">#(headline.text)</h1>
+            <div class="mv-hero-1__paragraph" style="color:#(paragraph.color)">#(paragraph.text)</div>
+        </div>
+
+    </div>
+</section>
+<style>
+    .mv-component.mv-hero-1 {
+        max-width: 100%;
+        margin: 2rem 0;
+    }
+
+    .mv-component.mv-hero-1 .mv-hero-1__container .mv-hero-1__image {
+        background-repeat: no-repeat;
+        height: 0;
+        padding-bottom: 50%;
+        background-size: 100%;
+    }
+
+    .mv-component.mv-hero-1 .mv-hero-1__container .mv-hero-1__textbox {
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        background: white;
+        padding: 2rem;
+        width: 20rem;
+    }
+
+    @media only screen and (max-width: 799px) {
+        .mv-component.mv-hero-1 .mv-hero-1__container .mv-hero-1__textbox {
+            position: relative;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+    }
+</style>

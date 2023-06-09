@@ -1,0 +1,5 @@
+text:
+  type: string
+  format: localized
+  title: Paragraph text
+  default: Paragraph text

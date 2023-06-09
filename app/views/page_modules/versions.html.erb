@@ -1,0 +1,48 @@
+<h1>
+  Version history of <%= @page_module.page.name %>
+</h1>
+
+
+<div class="versions">
+  <div class="version">
+    <div class="id">
+      ID
+    </div>
+    <div class="creator">
+      Creator
+    </div>
+    <div class="date">
+      Date
+    </div>
+    <div class="link">
+  
+    </div>
+    <div class="what">
+     
+    </div>
+
+  </div>
+
+</div>
+
+<% @page_module.versions.each do |version| %>
+  <div class="version">
+    <div class="id">
+      <%= version.id %>
+    </div>
+    <div class="creator">
+      <%= @authors.find(version.whodunnit).email %>
+    </div>
+    <div class="date">
+      <%= version.created_at %>
+    </div>
+    <div class="link show">
+      <%= link_to 'Show', @page_module, class: "ui button" %>
+    </div>
+     <div class="link restore">
+      <%= link_to "Restore", restore_version_page_module_path(@page_module, version: version), class: "ui button" %>
+    </div>
+  </div>
+<% end %>
+
+</div>

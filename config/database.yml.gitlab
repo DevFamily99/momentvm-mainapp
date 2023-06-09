@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: postgres
+  pool: 5
+  database: ci_db
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: postgres
+  pool: 5
+  database: ci_db
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: postgres
+  pool: 5
+  database: ci_db
+

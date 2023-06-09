@@ -1,0 +1,52 @@
+<h1>Select pages for translation</h1>
+<p>
+  These pages have been validated and can be bundled into a translation.
+</p>
+<%= form_with url: workflow_send_translations_path do |form| %>
+  <div>
+    <%= form.label "Project Title" %>
+    <%= form.text_field "project_title", value: "CMS Translations" %>
+  </div>
+  <br>
+  <div>
+    <%= form.label "Deadline" %>
+    <%= form.date_field "deadline", value: Date.today + 5.days  %>
+  </div>
+  <br>
+  
+  <h2>Pages to send</h2>
+
+  <div class="switch">
+    <%= check_box_tag "select-all-locales", "yes", true, id: :selectAll  %> 
+    <label for="selectAll"></label>Select all
+  </div>
+  <br><br>
+
+  <% @pages.each do |page| %>
+    <div class="page">
+       <%= hidden_field_tag "pages[#{page.id}]", false, id: "h_#{page.id}"%>
+      <div class="switch">
+        <%= check_box_tag "pages[#{page.id}]", true, id: "#{page.id}" %>
+        <%= label_tag "pages_#{page.id}"%>
+      </div>
+      <%= label_tag page.name %>
+   
+    </div>
+  <% end %>
+  <h2>Target languages</h2>
+  <p>Select the locales you want to translate into</p>
+  <div id="locales">
+  <% @target_languages.each do |lang| %>
+    <div class="locale">
+      <%= hidden_field_tag "locales[#{lang}]", false %>
+      <div class="switch">
+        <%= check_box_tag "locales[#{lang}]", "yes", true, id: "#{lang}" %>
+        <%= label_tag "#{lang}"%>
+      </div>
+      <%= label_tag lang %>
+      </div>
+    <br>
+  <% end %>
+  </div>
+  <%= form.submit "Sent to translation", :class => "submit_btn" %>
+<% end %>

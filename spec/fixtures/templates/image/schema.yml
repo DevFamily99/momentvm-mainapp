@@ -1,0 +1,10 @@
+image:
+  type: string
+  title: Image
+image_alt_text:
+  type: string
+  title: Image alternative text
+  format: localized
+image_unique_id:
+  type: string
+  title: Image unique ID

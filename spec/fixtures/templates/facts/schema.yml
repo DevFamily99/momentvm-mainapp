@@ -1,0 +1,79 @@
+headline:
+  type: string
+  format: localized
+  default: Headline
+  title: Headline
+fact_categories:
+  type: array
+  title: Fact categories
+  format: tabs
+  default:
+    - title: Title 1
+    - title: Title 2
+    - title: Title 3
+    - title: Title 4
+  items:
+    type: object
+    title: Fact category
+    properties:
+      title:
+        type: string
+        format: localized
+        title: Category title
+      title_color:
+        type: string
+        title: Title Color (in hex format)
+        default: #89447a
+      facts:
+        type: array
+        title: Facts
+        format: tabs
+        default:
+          - text: fact 1
+          - text: fact 2
+          - text: fact 3
+          - text: fact 4
+        items:
+          type: object
+          title: Fact
+          properties:
+            text:
+              type: string
+              format: localized
+              title: Text
+            is_link:
+              type: string
+              enum: ['false', 'true']
+              title: Link availbale
+            link:
+              oneOf:
+                - title: 'category'
+                  properties:
+                    category_id:
+                      type: string
+                      title: Category ID
+                    product_listing_page:
+                      type: string
+                      title: Product Listing Page
+                      enum: ['false', 'true']
+                  additionalProperties: false
+                - title: 'content asset'
+                  properties:
+                    content_asset_id:
+                      type: string
+                      title: Content Asset ID
+                  additionalProperties: false
+                - title: 'product'
+                  properties:
+                    product_id:
+                      type: string
+                      format: localized
+                      title: Product ID
+                  additionalProperties: false
+                - title: 'url'
+                  properties:
+                    url:
+                      type: string
+                      title: URL
+                  additionalProperties: false
+              title: Link fact to

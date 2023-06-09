@@ -1,0 +1,29 @@
+<%= link_to "Back to page", page_path(@page), class: "ui button" %>
+
+
+<h3>General</h3>
+
+<p>
+  <strong>Job finished at:</strong>
+</p>
+<p>
+  <%= time_ago_in_words @event.created_at %> ago
+</p>
+
+<p>
+  <strong>Category:</strong>
+</p>
+<p>
+  <%= @event.category.humanize %>
+</p>
+
+
+
+<h3>Status Codes</h3>
+<ul>
+<% @event.message_obj["status_codes"].each do |code| %>
+  <li>
+    <%= t code %>
+  <li>
+<% end %>
+</ul>

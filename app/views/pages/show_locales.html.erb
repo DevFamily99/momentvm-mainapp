@@ -1,0 +1,60 @@
+<%= form_with(url: update_page_publishing_locales_path(page_id: @page)) do |form| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h1>Publishing sites</h1>
+
+
+<%= link_to "Approve all", approve_all_page_path(@page), class: "ui button" %>
+<%= link_to "Unapprove all", unapprove_all_page_path(@page), class: "ui button" %>
+
+<table>
+  <thead>
+    <tr>
+      <th width="100px">Site</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publishingLocales.each do |publishing_locale| %>
+
+     <% if current_user.allowed_countries_include?(publishing_locale.locale) %>
+
+      <tr>
+        <td><%= publishing_locale.locale %></td>
+
+
+      <% if publishing_locale.approver_id == nil%>
+        <% if current_user.has_skill?('can_approve_pages') %>
+          <td>
+            <%= link_to "Approve", approve_locale_path(locale: publishing_locale), class: "ui button" %>
+          </td>
+        <%else %>
+           <td>Unapproved</td>
+        <% end %>
+      <% else %>
+        <td class="approved" style="color:green">Approved</td>
+
+      <% end %>
+
+       </tr>
+    <% end %>
+      <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', @page, class: "ui button" %>
+
+
+
+<% end %>

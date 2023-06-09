@@ -1,0 +1,59 @@
+<%= form_with(model: publishing_target, local: true, class: "rails-form") do |form| %>
+  <% if publishing_target.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(publishing_target.errors.count, "error") %> prohibited this publishing_target from being saved:</h2>
+
+      <ul>
+      <% publishing_target.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Staging" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publishing_url %>
+    <%= form.text_field :publishing_url, placeholder: "https://yourinstance.demandware.net" %>
+  </div>
+
+   <div class="field">
+    <%= form.label :catalog %>
+    <%= form.text_field :catalog %>
+  </div>
+
+   <div class="field">
+    <%= form.label :default_library %>
+    <%= form.text_field :default_library %>
+  </div>
+
+  <div class="field">
+    <%= form.label :webdav_username %>
+    <%= form.text_field :webdav_username, placeholder: "webdav_user" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :webdav_password %>
+    <%= form.text_field :webdav_password, placeholder: "******" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :webdav_path %>
+    <%= form.text_field :webdav_path, placeholder: "https://yourinstance...net/.../default/cms_assets" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :preview_url %>
+    <%= form.text_field :preview_url %>
+  </div>
+
+
+  <div class="actions">
+    <%= link_to 'Back', publishing_targets_path, class: "ui button"  %>
+    <%= form.submit %>
+  </div>
+<% end %>

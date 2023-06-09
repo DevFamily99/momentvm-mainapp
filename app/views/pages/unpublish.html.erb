@@ -1,0 +1,47 @@
+<h1>Unpublish</h1>
+
+<p>
+
+</p>
+
+
+<div class="switch">
+ <%= check_box_tag "select-all-locales", "yes", true, id: "selectAll"  %> 
+ <label for="selectAll"></label>Select all
+</div>
+
+<%= form_with(url: page_unpublish_do_path(page_id: @page)) do |form| %>
+
+
+  <div id="countries">
+    <% @approvedSites.each do |site|%>
+       <% if  current_user.allowed_countries_include?(site[:id]) %>
+
+
+      <div class="country">
+        <div class="checkbox-container">
+          <div class="switch">
+          <%= check_box_tag "countries[#{site[:id]}]", "yes", true, id: site[:id] %>
+          <%= label_tag "#{site[:id]}" %>
+          </div>
+        </div>
+        <div class="details">
+          <h3><%= site[:name] %></h3>
+          <p class="locales">Locales: <%= site[:locales].pluck("locale").join(", ") %></p>
+        </div>
+      </div>
+    <% end %>
+        <% end %>
+
+
+  </div>
+
+
+
+  <div class="actions">
+    <%= link_to "Back to page", page_path(@page), class: "ui button" %>
+    <% unless @approvedSites.empty? %>
+      <%= form.submit "Unpublish from #{@publishing_target}"%>
+    <% end %>
+  </div>
+<% end %>

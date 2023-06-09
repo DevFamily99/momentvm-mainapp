@@ -1,0 +1,39 @@
+<h1>Results</h1>
+
+<% if @results.empty? %>
+  <p>No results found</p>
+<% end %>
+
+<div class="folder-listing-container">
+    <%= csrf_meta_tag %>
+    <div class="results-container group-container">
+      <% @results.each do |group, results| %>
+      <div class="group-container">
+        <h3 class="group-name"> <%= group %> </h3>
+        <% results.each do |result|  %>
+        <div class="result">
+        <gradient-icon data-name="<%= result.content %>">
+          <%= result.content.first %>
+        </gradient-icon>
+
+                <h3>
+                  <% if result.searchable_type == "Asset" %>
+                    <%= link_to result.content, media_file_path(result.searchable_id), :"data-result-id" => "#{result.id}" %>
+                  <% end %>
+                  <% if result.searchable_type == "Page" %>
+                    <%= link_to result.content, page_path(result.searchable_id), :"data-result-id" => "#{result.id}" %>
+                  <% end %>
+                    <% if result.searchable_type == "Template" %>
+                    <%= link_to result.content, template_path(result.searchable_id), :"data-result-id" => "#{result.id}" %>
+                  <% end %>
+
+                </h3>
+                </div>
+
+
+
+            <% end %>
+            </div>
+      <% end %>
+    </div>
+</div>

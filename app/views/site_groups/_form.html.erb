@@ -1,0 +1,27 @@
+<%= form_with(model: site_group, local: true, class: "rails-form") do |form| %>
+  <% if site_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(site_group.errors.count, "error") %> prohibited this site_group from being saved:</h2>
+
+      <ul>
+      <% site_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :library %>
+    <%= form.text_field :library, id: :site_group_library %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sites %>
+    <%= form.text_field :sites, id: :site_group_sites %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

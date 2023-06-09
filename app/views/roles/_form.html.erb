@@ -1,0 +1,93 @@
+<%= form_with(model: @role, local: true, class: "rails-form") do |form| %>
+<% if @role.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(@role.errors.count, "error") %>
+    prohibited this role from being saved:</h2>
+
+  <ul>
+    <% @role.errors.full_messages.each do |message| %>
+    <li>
+      <%= message %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h2>Details</h2>
+
+<div class="field">
+  <%= form.label :name %>
+
+  <% if @role.name == "Admin"%>
+   
+    <%= form.text_field :name, id: :role_name, class: "readonly", style: "pointer-events:none;" %>
+  <p class="explaination">You can't edit the name of the Admin role</p>
+  <% else %>
+    <%= form.text_field :name, id: :role_name %>
+  <% end%>
+</div>
+
+<h2>Access</h2>
+
+<div id="access">
+
+
+  <% Role.all_skills.each do |skill| %>
+  <div class="skill">
+    <% if @role.name == "Admin"%>
+      <div class="switch">
+        <%= check_box_tag "access[#{skill.keys.first}]", "yes", true,  :disabled=> true, id: skill.keys.first %>
+         <%= label_tag "#{skill.keys.first}" %>
+      </div>
+    <% else %> 
+      <div class="switch">
+        <%= check_box_tag "access[#{skill.keys.first}]", "yes", @role.has_skill?(skill.keys.first), id: skill.keys.first %>
+              <%= label_tag "#{skill.keys.first}" %>
+      </div>
+    <% end %>
+
+    <label class="access-select">
+      <%= t(skill.keys.first) %>
+    </label>
+  </div>
+  <% end %>
+    <% if @role.name == "Admin"%><br>
+  <p class="explaination">You can't edit the access settings for the Admin role</p>
+  <% end%>
+</div>
+
+<h2>Users</h2>
+
+<%= fields_for(User.by_team(current_user)) do |user| %>
+<div class="field" style="padding-left:0;">
+  <%= collection_select(:users, :id, @userWithoutRole, :id, :email, {:prompt => 'Select user(s)'}, {:multiple => true, class: "ui fluid selection dropdown", id: "select-user"}) %>
+</div>
+<% end %>
+
+<% if @userWithRole%>
+<ul>
+  <% @userWithRole.each do |user|%>
+  <li>
+    <span class="roles user">
+      <%= user.email %></span>
+
+    <%= link_to remove_user_from_role_path(@role, user) do %>
+    <i class="remove icon"></i>
+
+    <% end %>
+
+  </li>
+
+  <% end%>
+
+</ul>
+<% end%>
+
+<div class="actions">
+
+  <%= link_to 'Back', roles_path, class: "ui button" %>
+  <%= form.submit  class: 'btn-margin' %>
+</div>
+<% end %>

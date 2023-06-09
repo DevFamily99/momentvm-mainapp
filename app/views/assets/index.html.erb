@@ -1,0 +1,67 @@
+<h1>Images</h1>
+
+
+
+<div class="ui menu">
+  <div class="item">
+    <i class="plus icon"></i>
+    <%= link_to "Upload image", new_media_file_path  %>
+
+
+  </div>
+  <div class="menu">
+    <div class="ui search item">
+      <div class="ui transparent icon input">
+        <input class="prompt" type="text" placeholder="Search files...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="asset-image-container">
+  <% @assets.each do |asset| %>
+  <%= link_to media_file_path(asset.id) do %>
+    <div class="asset-grid-tile">
+      <div class="image">
+        <%= image_tag asset.image.variant resize: "100x100>"  %>
+      </div>
+      <div class="text-box">
+        <h2><%= asset.name %></h2>
+      </div>
+      <div class="details">
+        <p><%= asset.image.instance.image_file_name %></p>
+        <p>Created <%= time_ago_in_words asset.image.instance.created_at %> ago</p>
+      </div>
+
+    </div>
+      <% end %>
+
+  <% end %>
+</div>
+
+
+<script>
+
+$(".ui.search").on('keyup', function (e) {
+    var input = $(".prompt").val().toLowerCase()
+
+    $(".text-box").each(function(i, asset){
+         var assetName =  $(asset)[0].innerHTML
+         if (assetName.toLowerCase().indexOf(input) == -1){
+            $(asset).closest(".asset-grid-tile").hide();
+         }else {
+             $(asset).closest(".asset-grid-tile").show();
+         }
+
+
+    })
+});
+
+
+
+
+
+
+</script>

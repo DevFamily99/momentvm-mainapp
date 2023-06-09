@@ -1,0 +1,77 @@
+# frozen_string_literal: true
+
+module Types
+  # Register all mutations here
+  class MutationType < BaseObject
+    field :updateSchedule, mutation: Mutations::UpdateSchedule
+    field :deleteSchedule, mutation: Mutations::DeleteSchedule
+    field :createSchedule, mutation: Mutations::CreateSchedule
+    field :publishSchedule, mutation: Mutations::PublishSchedule
+    field :publishPage, mutation: Mutations::PublishPage
+    field :create_tag, mutation: Mutations::CreateTag
+    field :delete_tag, mutation: Mutations::DeleteTag
+    field :create_folder, mutation: Mutations::CreateFolder
+    field :create_page, mutation: Mutations::CreatePage
+    field :duplicate_page, mutation: Mutations::DuplicatePage
+    field :delete_page, mutation: Mutations::DeletePage
+    field :update_page, mutation: Mutations::UpdatePage
+    field :reorder_modules, mutation: Mutations::ReorderModules
+    field :create_page_module, mutation: Mutations::CreatePageModule
+    field :createNestedPageModule, mutation: Mutations::CreateNestedPageModule
+    field :update_page_module, mutation: Mutations::UpdatePageModule
+    field :delete_page_module, mutation: Mutations::DeletePageModule
+    field :copy_page_module, mutation: Mutations::CopyPageModule
+    field :create_page_comment, mutation: Mutations::CreatePageComment
+    field :update_page_context, mutation: Mutations::UpdatePageContext
+    field :create_publishing_target, mutation: Mutations::CreatePublishingTarget
+    field :update_publishing_target, mutation: Mutations::UpdatePublishingTarget
+    field :delete_publishing_target, mutation: Mutations::DeletePublishingTarget
+    field :create_country_group_reference, mutation: Mutations::CreateCountryGroupReference
+    field :delete_country_group_reference, mutation: Mutations::DeleteCountryGroupReference
+    field :delete_country_group_page_reference, mutation: Mutations::DeleteCountryGroupPageReference
+    field :createCountryGroup, mutation: Mutations::CreateCountryGroup
+    field :copy_country_group, mutation: Mutations::CopyCountryGroup
+    field :deleteCountryGroup, mutation: Mutations::DeleteCountryGroup
+    field :updateCountryGroup, mutation: Mutations::UpdateCountryGroup
+    field :createTranslation, mutation: Mutations::CreateTranslation
+    field :updateTranslation, mutation: Mutations::UpdateTranslation
+    field :deleteTranslation, mutation: Mutations::DeleteTranslation
+    field :setTeam, mutation: Mutations::SetTeam
+    field :deleteTeam, mutation: Mutations::DeleteTeam
+    field :updateTeam, mutation: Mutations::UpdateTeam
+    field :setPublishAssets, mutation: Mutations::SetPublishAssets
+    field :createTranslationProject, mutation: Mutations::CreateTranslationProject
+    field :fetchTranslations, mutation: Mutations::FetchTranslations
+    field :fetchTranslationAssignment, mutation: Mutations::FetchTranslationAssignment
+    field :deleteTemplate, mutation: Mutations::DeleteTemplate
+    field :updateTemplate, mutation: Mutations::UpdateTemplate
+    field :createTemplate, mutation: Mutations::CreateTemplate
+    field :archiveTemplate, mutation: Mutations::ArchiveTemplate
+    field :revert_template_version, mutation: Mutations::RevertTemplateVersion
+    field :create_translation_editor_color, mutation: Mutations::CreateTranslationEditorColor
+    field :delete_translation_editor_color, mutation: Mutations::DeleteTranslationEditorColor
+    field :createCustomerGroup, mutation: Mutations::CreateCustomerGroup
+    field :updateCustomerGroup, mutation: Mutations::UpdateCustomerGroup
+    field :deleteCustomerGroup, mutation: Mutations::DeleteCustomerGroup
+    field :deleteCustomerGroupReference, mutation: Mutations::DeleteCustomerGroupReference
+    field :updateRoleWhitelist, mutation: Mutations::UpdateRoleWhitelist
+    field :updateFolder, mutation: Mutations::UpdateFolder
+    field :updateParentFolder, mutation: Mutations::UpdateParentFolder
+    field :deleteAsset, mutation: Mutations::DeleteAsset
+    field :deleteAssetFolder, mutation: Mutations::DeleteAssetFolder
+    field :moveToArchive, mutation: Mutations::MoveToArchive
+    field :restoreFromArchive, mutation: Mutations::RestoreFromArchive
+    field :deletePageContext, mutation: Mutations::DeletePageContext
+    field :createPageContext, mutation: Mutations::CreatePageContext
+    field :createRole, mutation: Mutations::CreateRole
+    field :updateRole, mutation: Mutations::UpdateRole
+    field :deleteRole, mutation: Mutations::DeleteRole
+    field :updateUser, mutation: Mutations::UpdateUser
+    field :createUser, mutation: Mutations::CreateUser
+    field :deleteUser, mutation: Mutations::DeleteUser
+    field :update_setting, mutation: Mutations::UpdateSetting
+    field :blueprint_page, mutation: Mutations::BlueprintPage
+    field :deleteBlueprint, mutation: Mutations::DeleteBlueprint
+    field :createPageFromBlueprint, mutation: Mutations::CreatePageFromBlueprint
+  end
+end

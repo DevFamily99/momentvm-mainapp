@@ -1,0 +1,82 @@
+<%= form_with(model: page, local: true, class: "rails-form") do |form| %>
+  <% if page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%= form.hidden_field :page_folder_id, value: @page.page_folder_id %>
+
+
+
+  <h2>Details</h2>
+
+  <div class="field">
+    <%= form.label :name %>
+    <div class="ui input">
+    <%= form.text_field :name, id: :page_name %>
+    </div>
+    <p class="explaination">Whatever you want to call the page (e.g. Home Page, ...)</p>
+  </div>
+
+  <!-- <div class="field">
+    <%# form.label :folder %>
+    <%# form.text_field :tag, id: :page_tag %>
+    <p class="explaination">Add a folder to the page</p>
+  </div> -->
+
+
+  <div class="field">
+     <%= form.label "Article or Category" %>
+      <div class="custom-dropdown">
+        <%= form.select :context_type, options_for_select([['category'], ['content asset']], :selected => @page.context_type ) %>
+      </div>
+    <p class="explaination">Whether the page is a category page or an content asset.<br/>This will tell Salesforce Commerce Cloud if this is an content asset or a category</p>
+
+
+
+  </div>
+
+  <div class="field">
+    <%= form.label "Is page searchable" %>
+     <div class="custom-dropdown">
+    <%= form.select :is_searchable, options_for_select([['true'], ['false']], :selected => @page.is_searchable )%>
+    </div>
+    <p class="explaination">Whether the page is searchable or not<br/></p>
+  </div>
+
+
+
+  <%= render partial: "locales_list" if SettingService.pages_show_language_preview(current_user) %>
+
+
+
+  <h2>Publishing Settings</h2>
+
+
+    <div class="field">
+      <%= form.label :context %>
+         <div class="ui input">
+      <%= form.text_field :context, id: :page_context %>
+      </div>
+      <p class="explaination">This is the category ID (if category page) or the Content asset name (if Content asset) in Salesforce Commerce Cloud. If you dont know it, let it blank for now. It is only needed for publishing.</p>
+    </div>
+
+   <div class="field">
+    <%= form.label :folder_assignments %>
+    <p class="explaination">A list of folders, which should be assigned to the assets.</p>
+    <%= form.text_area :folder_assignments, id: :folder_assignments %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

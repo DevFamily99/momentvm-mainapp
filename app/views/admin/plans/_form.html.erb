@@ -1,0 +1,38 @@
+<%= form_with(model: [:admin, plan], local: true, class: "rails-form") do |form| %>
+ <% if plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+      <% plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <form class="ui form">
+  <div class="field">
+     <%= form.label :name %>
+    <div class="ui input">
+      <%= form.text_field :name %>
+    </div>
+    <p class="explaination">Name of the plan</p>
+  </div>
+
+  <div class="field">
+     <%= form.label :country_limit %>
+    <div class="ui input">
+      <%= form.number_field :country_limit %>
+    </div>
+    <p class="explaination">How many countries can be imported form SFCC</p>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+
+
+  <%= link_to 'Back', admin_plans_path, class: "ui button" %>
+  </div>
+<% end %>

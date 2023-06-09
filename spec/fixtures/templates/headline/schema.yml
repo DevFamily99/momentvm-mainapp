@@ -1,0 +1,5 @@
+headline:
+  type: string
+  format: localized
+  title: Headline
+  default: Headline

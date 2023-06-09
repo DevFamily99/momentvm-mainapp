@@ -1,0 +1,19 @@
+---
+sites:
+  - name: United Kingdom
+    locales:
+      - locale: en
+        name: English
+    id: GB
+  - name: United States
+    locales:
+      - locale: en
+        name: English
+      - locale: es
+        name: Spanish
+    id: US
+  - name: France
+    locales:
+      - locale: fr
+        name: French
+    id: FR

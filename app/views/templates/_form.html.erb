@@ -1,0 +1,36 @@
+<%= form_with(model: template, local: true, class: "rails-form") do |form| %> <% if template.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    <%= pluralize(template.errors.count, "error") %> prohibited this template from being saved:
+  </h2>
+
+  <ul>
+    <% template.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :name %> <%= form.text_field :name, id: :template_name %>
+</div>
+
+<div class="field description">
+  <%= form.label :description %> <%= form.text_field :description, id: :description %>
+</div>
+
+<div class="field"><%= form.label :image %> <%= form.file_field :image %></div>
+
+<div class="field">
+  <%= form.label :body %> <%= form.text_area :body, id: :template_body %>
+</div>
+
+<div class="field">
+  <%#= form.label :preview_body %> <%#= form.text_area :preview_body, id: :template_preview_body %>
+</div>
+
+<div class="actions">
+  <%= link_to 'Back', templates_path, class: "ui button" %> <%= form.submit %>
+</div>
+<% end %>

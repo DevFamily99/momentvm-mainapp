@@ -1,0 +1,189 @@
+hero_module:
+  body: |
+    headline:
+      color: ''
+      text: loc::Business Outfit
+    paragraph:
+      color: ''
+      text: loc::for New Work concept.
+    image: MOMENTVM-Demo-1
+    image_alt_text: loc::business outfit new work
+    image_unique_id: ''
+  rank: abcdef
+  template: Hero
+
+image_module_1:
+  body: |
+    image: Teaser-Image
+    image_alt_text: ''
+    image_unique_id: ''
+  rank: bcdefg
+  template: Image
+
+headline_text_button_module_1:
+  body: |
+    headline: loc::10% off
+    paragraph: loc::Save money with the promo code "business casual".
+    button:
+      text: loc::Shop now
+      link:
+        category_id: 
+        product_listing_page: false
+  rank: cdefgh
+  template: Headline_text_button
+
+image_module_2:
+  body: |
+    image: MOMENTVM-Demo-2
+    image_alt_text: ''
+    image_unique_id: ''
+  rank: defghi
+  template: Image
+
+headline_text_button_module_2:
+  body: |
+    headline: loc::Hands on casuality.
+    paragraph: loc::Discover our new collection of business outfits made exclusively for the New Work concept. New Work is a new way to combine work and life. It is the future of work and our new culture.
+    button:
+      text: loc::Discover the styles
+      link:
+        category_id: 
+        product_listing_page: false
+  rank: efghij
+  template: Headline_text_button
+
+headline_module:
+  body: |
+    headline: loc::Get inspired.
+  rank: fghijk
+  template: Headline
+
+paragraph_module:
+  body: |
+    text: loc::The question is how we can make the transition from the old working world to the new working world productive. The use of new technologies is only one starting point. Another is surely the perfect equipment of your clothes as preparation for New Work.
+  rank: ghijkl
+  template: Paragraph
+
+facts_module:
+  body: |
+    headline: loc::Shop the look
+    fact_categories:
+    - title: loc::Shirt
+      title_color: 
+      facts:
+      - text: loc::slim fit shirt
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::easy iron
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::long arms
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::$ 55.00
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+    - title: loc::Trousers
+      title_color: 
+      facts:
+      - text: loc::resistant
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::stretch
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::high quality
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::$ 105.00
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+    - title: loc::Shoes
+      title_color: 
+      facts:
+      - text: loc::pure leather
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::washable
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::comfortable
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::$ 89.00
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+    - title: loc::Blazer
+      title_color: 
+      facts:
+      - text: loc::slim fitted
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::fashionable
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::breathable
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+      - text: loc::$ 145.00
+        is_link: 'false'
+        link:
+          category_id: ''
+          product_listing_page: 'false'
+          selected: category
+
+  rank: hijklm
+  template: Facts
+
+image_module_3:
+  body: |
+    image: MOMENTVM-Demo-3
+    image_alt_text: ''
+    image_unique_id: ''
+  rank: ijklmn
+  template: Image

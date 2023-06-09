@@ -1,0 +1,36 @@
+<%= form_with(url: update_page_publishing_locales_path(page_id: @page)) do |form| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this role from being saved:</h2>
+      <ul>
+        <% @page.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h1>Add Country</h1>
+  <p>Page: <%= @page.name %></p>
+  <%if current_user.allowed_countries %>
+    <div class="switch">
+      <%= check_box_tag "select-all-locales", "yes", false,  id: :selectAll  %>
+      <label for="selectAll"></label> Select all
+    </div>
+    <div id="access">
+      <% SettingService.get_sites(current_user).each do |country| %>
+        <% if current_user.allowed_countries_include?("#{country['id']}") %>
+          <div class="switch">
+            <%= check_box_tag "locales[#{country['id']}]", country['name'], @page.country_added?(country), id: "#{country['id']}"  %>
+            <%= label_tag "#{country['id']}"%><%= "#{country['name']}" %> (<%= "#{country['id']}" %>)
+          </div>
+          <br />
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>You don't have access to any countries. Please ask your administrator for access rights.</p>
+  <% end %>
+  <div class="actions">
+    <%= form.submit "Save", class: "ui button" %>
+  </div>
+<% end %>

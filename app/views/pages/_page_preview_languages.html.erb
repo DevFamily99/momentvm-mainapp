@@ -1,0 +1,29 @@
+<%# Languages customization %>
+<% if @languages %>
+<div class="ui buttons">
+<div class="ui button preview-languages">
+  <div class="ui inline scrolling dropdown">
+    <div class="text">
+      <i class="edit icon"></i>
+      Edit Language
+    </div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <%#= link_to "Start Editing", live_preview_page_path(@page, preview_locale: "en-MASTER", date: :all), class: "item" %>
+      <%= link_to "Default", live_preview_page_path(@page, preview_locale: "default", date: :all), class: "item" %>
+
+       <% if current_user.allowed_countries%>
+
+          <% @languages.each do |locale| %>
+            <% if current_user.allowed_countries_include?(locale)%>
+              <%= link_to locale, live_preview_page_path(@page, preview_locale: locale, date: :all), class: "item" %>
+            <% end %>
+          <% end %>
+          <% end %>
+
+    </div>
+  </div>
+</div>
+
+</div>
+<% end %>

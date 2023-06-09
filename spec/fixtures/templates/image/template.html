@@ -1,0 +1,23 @@
+<section class="mv-component mv-image" id="module-#(module_id)-id" }>
+
+    <div class="mv-image__container">
+        <div id="#(image_unique_id)" class="mv-image__image"
+            style="background-image:url('#if(image != ""){dynamicimage::legacy:#(image)::}else{https://via.placeholder.com/1600x800?text=Image}')">
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .mv-component.mv-image {
+        max-width: 100%;
+        margin: 2rem 0;
+    }
+
+    .mv-component.mv-image .mv-image__container .mv-image__image {
+        background-repeat: no-repeat;
+        height: 0;
+        padding-bottom: 50%;
+        background-size: 100%;
+    }
+</style>

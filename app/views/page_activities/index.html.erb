@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Page Activities</h1>
+
+
+<% if @page_activities.length > 0%>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Note</th>
+      <th>Page</th>
+      <th>Page ID</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @page_activities.each do |page_activity| %>
+      <tr>
+        <td><%= page_activity.user.email %></td>
+        <td><%= page_activity.note %></td>
+        <td><%= page_activity.page.name %></td>
+        <td><%= page_activity.page.id %></td>
+           </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else%>
+  <p> There are not any page activies yet </p>
+
+<% end%>
+
+<br>

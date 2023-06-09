@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library library-id="StokkeSharedLibrary" xmlns="http://www.demandware.com/xml/impex/library/2006-10-31">
+
+    <content content-id="<%= page.context %>">
+        <online-flag>true</online-flag>
+        <searchable-flag>true</searchable-flag>
+  
+        <custom-attributes>
+          <% localized_modules.each do |locale, body| %>
+            <custom-attribute attribute-id="body" xml:lang="<%= locale %>">
+              <![CDATA[<%= body.html_safe %>]]>
+            </custom-attribute>
+            <% end %>
+
+        </custom-attributes>
+
+    </content>
+
+</library>

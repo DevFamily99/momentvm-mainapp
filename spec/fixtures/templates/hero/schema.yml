@@ -1,0 +1,36 @@
+headline:
+  type: object
+  title: Headline
+  properties:
+    text:
+      type: string
+      format: localized
+      default: Headline
+      title: Text
+    color:
+      type: string
+      title: Headline color (in hex)
+      default: #000000
+paragraph:
+  type: object
+  title: Paragraph
+  properties:
+    text:
+      type: string
+      title: Text
+      format: localized
+      default: Paragraph
+    color:
+      type: string
+      title: Paragraph color (in hex)
+      default: #000000
+image:
+  type: string
+  title: Image
+image_alt_text:
+  type: string
+  title: Image alternative text
+  format: localized
+image_unique_id:
+  type: string
+  title: Image unique ID

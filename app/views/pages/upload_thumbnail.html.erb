@@ -1,0 +1,26 @@
+<h1>Upload Preview Image</h1>
+
+
+Page has recent thumbnail: <%= @page.has_thumbnail %>
+
+
+<% if @page.thumbnail.attached? %>
+<!-- @post.image.present? will always return true, use attached? to check presence -->
+  <p>
+    <strong>Thumbnail:</strong>
+    <br>
+    <%= image_tag @page.thumbnail %>
+  </p>
+<% end %>
+
+<%= form_with(model: @page, local: true, class: "rails-form") do |form| %>
+
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail, class: :uploadfile %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

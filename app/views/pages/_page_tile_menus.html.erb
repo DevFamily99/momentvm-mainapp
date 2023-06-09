@@ -1,0 +1,119 @@
+<div class="page-menus">
+  <%# EDIT Page %>
+  <div class="ui buttons settings">
+    <%#= link_to "View Only", view_only_live_preview_page_path(@page, preview_locale: :default, date: :all), class: "item" %>
+    <%= link_to edit_page_path(@page), class: "ui button" do %>
+      <i class="settings icon"></i>
+      Page settings
+    <% end %>
+  </div>
+    <%#= render partial: "page_preview_languages" if SettingService.pages_show_language_preview(current_user) %>
+    <%#= render partial: "page_preview_countries" unless @publishingSites.empty? %>
+    <%= render partial: "page_preview_countries_react" unless @publishingSites.empty? %>
+
+ <% if current_user.has_skill? :can_publish_pages %>
+  <div class="ui buttons">
+    <%# Publish Page %>
+    <div class="ui button publish">
+      <div class="ui dropdown">
+        <div class="text">
+          <i class="wifi icon"></i>
+          Publish
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <% @publishing_targets.each do |target|%>
+           <%= link_to "to #{target.name}...", publish_page_path(@page, publishing_target: target), class: "item", data: {turbolinks: false} %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
+    <% if current_user.has_skill? :can_unpublish_pages %>
+    <div class="ui buttons">
+    <%# Unpublish Page %>
+    <div class="ui button unpublish">
+      <div class="ui dropdown">
+        <div class="text">
+          <i class="times icon"></i>
+          Unpublish
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+        <% @publishing_targets.each do |publishing_target|%>
+           <%= link_to "from #{publishing_target.name}...", unpublish_page_path(@page, publishing_target: publishing_target), class: "item", data: {turbolinks: false} %>
+        <% end %>
+           </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div class="ui buttons">
+    <div class="ui button translation">
+      <div class="ui dropdown">
+        <div class="text">
+          <i class="sort amount down icon"></i>
+          Translation Workflow
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <%= link_to "Reset translation status", reset_translation_status_path(@page), data: { confirm: 'Are you sure?' }, class: "item" %>
+          <%= link_to "Send to translation (validation)", send_to_translation_validation_path(@page), class: "item" %>
+          <%= link_to 'Send validated pages to translation', workflow_send_translations_start_path, class: "item" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui buttons">
+    <%= link_to duplicate_pages_path(@page), class: "ui button duplicate-page" do %>
+    <i class="clone outline icon"></i>
+    Duplicate page
+    <% end %>
+    <%= link_to @page, method: :delete, data: { confirm: 'Are you sure?' }, class: "red ui button delete-page" do %>
+    <i class="delete icon"></i>
+    Delete page
+    <% end %>
+  </div>
+  <div class="item ui buttons" style="display:inline-flex;">
+
+
+  <%= form_for :pages, :url=>{:action=>'restore_version'}, :html=>{  :class => "form", :onsubmit=> "return confirm('Are you sure, you want to restore the page from selected date?');",:multipart => true} do |f| %>
+
+
+    <div id="date-picker-button" class="ui button">
+
+    <i class='calendar alternate icon'></i>
+        <span class="placeholder">Set restore date</span>
+        <div class="date"></div>
+  </div>
+
+
+  <%= hidden_field_tag 'version_date' %>
+      <%= submit_tag 'Restore page', :class =>'button restorePageBtn hide' %>
+  <% end %>
+
+
+  </div>
+  <div class="ui buttons" style="display:inline-flex;"> 
+  <%= link_to export_xml_path(@page), class: "ui button" do %>
+      <i class="download icon"></i>
+  Download XML
+  <% end %>
+  </div>
+  <div class="ui buttons" style="display:inline-flex;"> 
+  <%= link_to export_translations_path(@page), class: "ui button" do %>
+      <i class="download icon"></i>
+  Download translations
+  <% end %>
+  </div>
+    <div class="ui buttons" style="display:inline-flex;"> 
+      <%= link_to import_translations_path(@page), class: "ui button" do %>
+          <i class="upload icon"></i>
+      Import translations
+      <% end %>
+
+  </div>
+
+</div>

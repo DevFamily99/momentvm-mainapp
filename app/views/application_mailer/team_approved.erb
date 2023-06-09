@@ -1,0 +1,18 @@
+<p><br>
+<span style="font-family:open sans,helvetica neue,helvetica,arial,sans-serif">Hi,&nbsp;<br>
+<br>
+your account for the MOMENTVM Content Cloud has been approved!&nbsp;<br>
+<br>
+You can now log in with the following credentials:&nbsp;<br>
+<br>
+<br>
+URL:&nbsp;<strong><a href="#{ENV['HOST']}">https://app.momentvm.com</a> </strong><br>
+<br>
+Username: <strong> <%= team.owner_email %></strong><br>
+<br>
+<em>Click on the link below to create your password.</em><br>
+<br>
+<%= link_to "Create password", create_password_url(user.reset_password_token) %><br><br>
+<br>
+Hint:&nbsp;<em>Check out the MOMENTVM Documentation and learn how to get the most out of your brand new CMS.</em><br>
+<br></p>

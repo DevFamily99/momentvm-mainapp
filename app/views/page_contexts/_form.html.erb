@@ -1,0 +1,50 @@
+<%= form_with(model: page_context, local: true, class: "rails-form") do |form| %>
+  <% if page_context.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page_context.errors.count, "error") %> prohibited this page_context from being saved:</h2>
+      <ul>
+        <% page_context.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3>General Settings</h3>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Global Header" %>
+    <p>Choose a any name</p>
+  </div>
+  <div class="field">
+    <%= form.label :slot %>
+    <%= form.text_field :slot, placeholder: "slot-01" %>
+    <p>The slot id within SFCC</p>
+  </div>
+  <div class="field">
+    <%= form.label :context %>
+    <select name="page_context[context]" value="">
+      <option value="global" <%= @page_context.context == "global" ? "selected" : '' %> >Global</option>
+      <option value="category" <%= @page_context.context == "category" ? "selected" : '' %>>Category</option>
+      <option value="folder" <%= @page_context.context == "folder" ? "selected" : '' %>>Folder</option>
+    </select>
+  </div>
+  <div class="field">
+    <%= form.label :rendering_template %>
+    <%= form.text_field :rendering_template, placeholder: "slots/content/contentAssetBody.isml" %>
+  </div>
+  <h3>Optional</h3>
+  <p>If a different slot than the one in team settings should be set, define a url and a selector here</p>
+  <div class="field">
+    <%= form.label :preview_wrapper_url %>
+    <%= form.text_field :preview_wrapper_url %>
+    <p>Use a url of your website which will serve as the frame for your content</p>
+  </div>
+  <div class="field">
+    <%= form.label :selector %>
+    <%= form.text_field :selector%>
+    <p>The element which matches the selector will be replaced by the cms content</p>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

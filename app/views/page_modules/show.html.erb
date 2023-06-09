@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Schedule:</strong>
+  <%= @page_module.schedule %>
+</p>
+<p>
+  <strong>Rank:</strong>
+  <%= @page_module.rank %>
+</p>
+<p>
+  <strong>Pages:</strong>
+  <%= @page_module.pages.map(&:name).join(', ') %>
+</p>
+<p>
+  <strong>Template:</strong>
+  <%= @page_module.template.name %>
+</p>
+<p>
+  <strong>Body:</strong>
+  <textarea readonly>  
+    <%= @page_module.body %>
+  </textarea>
+</p>
+<%= link_to 'Edit', edit_page_module_path(@page_module) %> |
+<%= link_to 'Back', page_modules_path %>

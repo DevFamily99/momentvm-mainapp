@@ -1,0 +1,18 @@
+<h2>
+  Custom Setting name: <b><%= @setting.name %></b>
+</h2>
+
+<p>Created: <%= @setting.created_at %></p>
+<p>Last modified: <%= @setting.updated_at %></p>
+<% if current_user.has_skill?(:can_edit_settings) %>
+  <div class="actions"> 
+    <%= link_to 'Back', settings_path, class: "ui button"%>
+    <%= link_to edit_setting_path(@setting), class: "ui button edit-btn primary" do  %> 
+    <i class="icon pencil"></i>Edit
+  
+  <% end %>
+  </div>
+<% else %>
+  <p>You dont have access to edit settings</p>
+<% end %>
+

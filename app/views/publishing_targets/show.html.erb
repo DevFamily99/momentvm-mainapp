@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @publishing_target.name %>
+</p>
+
+<p>
+  <strong>Publishing url:</strong>
+  <%= @publishing_target.publishing_url %>
+</p>
+
+<p>
+  <strong>Webdav username: (encrypted)</strong>
+  <%= @publishing_target.webdav_username %>
+</p>
+
+<p>
+  <strong>Webdav password: (encrypted)</strong>
+  *******
+</p>
+
+<p>
+  <strong>Webdav path:</strong>
+  <%= @publishing_target.webdav_path %>
+</p>
+
+<p>
+  <strong>Preview url:</strong>
+  <%= @publishing_target.preview_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_publishing_target_path(@publishing_target) %> |
+<%= link_to 'Back', publishing_targets_path %>

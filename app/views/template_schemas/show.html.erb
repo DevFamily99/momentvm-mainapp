@@ -1,0 +1,13 @@
+<h2>Template Schema: <b><%= @template_schema.template.name %></b></h2>
+
+<p>Created: <%= @template_schema.created_at %></p>
+<p>Last modified: <%= @template_schema.updated_at %></p>
+<% if current_user.has_skill?(:can_edit_templates) %>
+
+<div class="actions">
+  <%= link_to 'Back', template_schemas_path, class: "ui button" %>
+    <%= link_to edit_template_schema_path(@template_schema), class: "ui button btn-margin edit-btn primary"  do %> 
+      <i class="pencil icon"></i>Edit
+    <% end%>
+  <% end%>
+</div>

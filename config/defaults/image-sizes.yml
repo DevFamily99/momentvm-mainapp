@@ -1,0 +1,35 @@
+#### Image sizes that can be used
+# You can add new sizes here.
+# The first is the name and the body of
+# it are the modifications that will be applied
+large:
+  resize: '800x800'
+pdpFullScreen:
+  resize: '1600x1600'
+verylarge:
+  resize: '1600x1600'
+  colorspace: Gray
+verysmall:
+  resize: '100x100'
+homepagehero:
+  resize: '1000x800'
+  quality: 85
+homepagecampaign:
+  resize: '1000x800'
+  quality: 80
+homepagecampaign_low:
+  resize: '800x800'
+  quality: 75
+legacy:
+  resize: '800x800'
+  quality: 75
+legacy-tablet:
+  resize: '800x800'
+  quality: 75
+legacy-mobile:
+  resize: '800x800'
+  quality: 75
+icon:
+  resize: '180x60'
+original:
+  quality: 92

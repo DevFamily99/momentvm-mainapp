@@ -1,0 +1,19 @@
+<div id="app-root"></div>
+<%= hidden_field_tag :current_team_id, current_user.team.id %>
+<div id="teamFirstTimeSetup-wrapper"></div>
+<%= javascript_packs_with_chunks_tag 'teamFirstTimeSetup' %>
+<h1>Home</h1>
+<% if @recently_viewed_pages != [] %>
+  <h2>Recently Viewed</h2>
+  <page-grid>
+    <%= render :partial => 'page_grid', :collection =>@recently_viewed_pages, :as => :page %>
+  </page-grid>
+<% end %>
+<h2>Recently Updated</h2>
+<page-grid>
+  <%= render :partial => 'page_grid', :collection =>@recently_updated, :as => :page %>
+</page-grid>
+<h2>Newest</h2>
+<page-grid>
+  <%= render :partial => 'page_grid', :collection =>@newest, :as => :page %>
+</page-grid>

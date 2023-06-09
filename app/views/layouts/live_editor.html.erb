@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- USE THIS PARTIAL TO ADD THE NEEDED LIBRARIES THAT ARE MISSING FROM THE PREVIEW IFRAME -->
+	<title>Momentvm Content Management</title>
+
+	<!-- tiny-slider -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css">
+
+	
+	<%= yield %>
+</head>
+
+<%= render partial: "preview-helper-snippet-css" %>
+
+<body class="<%= controller_name %>-<%= action_name %> <%= controller_name %>">
+				
+</body>
+
+</html>

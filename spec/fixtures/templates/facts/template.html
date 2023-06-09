@@ -1,0 +1,67 @@
+<style>
+    .mv-component.mv-facts {
+        margin: 2rem 0;
+    }
+
+    .mv-component.mv-facts .mv-facts__container {
+        width: 70%;
+        margin: 0 auto;
+        border: 2px solid #e8e8e8;
+        padding: 2rem;
+    }
+
+    .mv-component.mv-facts .mv-facts__categories {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .mv-component.mv-facts .mv-facts__categories .mv-facts__category {
+        min-width: 8rem;
+        margin: 1rem 0;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mv-component.mv-facts .mv-facts__pre-header {
+        margin-bottom: 1rem;
+    }
+
+    @media only screen and (max-width: 799px) {
+        .mv-component.mv-facts .mv-facts__categories {
+            flex-wrap: wrap;
+        }
+
+    }
+</style>
+
+<section class="mv-component mv-facts" id="module-#(module_id)-id" }>
+    <div class="mv-facts__container">
+        <h3>#(headline)</h3>
+
+        <div class="mv-facts__categories">
+            #for(category in fact_categories){
+
+            <div class="mv-facts__category">
+
+                <div class="mv-facts__pre-header" style="color: #(category.title_color);">#(category.title)</div>
+                <div class="mv-facts__category__fact-list">
+                    #for(fact in category.facts){
+
+                    <div class="mv-facts__category__fact-item">
+
+                        #if(fact.is_link == true){
+                        <a href="#if(fact.link.category_id){$url('Search-Show','cgid','#(fact.link.category_id)'#if(fact.link.product_listing_page == true){,'forcelisting', '#(fact.link.product_listing_page)'})$}#if(fact.link.product_id){$url('Product-Show','pid','#(fact.link.product_id)')$}#if(fact.link.content_asset_id){$url('Page-Show','cid','#(fact.link.content_asset_id)')$}#if(fact.link.url){#(fact.link.url)}" #if(fact.link.url){target="_blank"}>
+                              <div class="mv-facts__copy #if(fact.is_link == true){sk-link}">#(fact.text)</div>
+                          </a>} else {
+                              <div class="mv-facts__copy #if(fact.is_link == true){sk-link}">#(fact.text)</div>
+                        }
+                      </div>
+                      }
+                  </div>
+              </div>
+              }
+          </div>
+      </div>
+    </section>

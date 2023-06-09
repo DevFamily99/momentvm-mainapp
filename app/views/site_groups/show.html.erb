@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Library:</strong>
+  <%= @site_group.library %>
+</p>
+
+<p>
+  <strong>Sites:</strong>
+  <%= @site_group.sites %>
+</p>
+
+<%= link_to 'Edit', edit_site_group_path(@site_group) %> |
+<%= link_to 'Back', site_groups_path %>

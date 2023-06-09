@@ -1,0 +1,44 @@
+image: ruby:2.7.2
+
+stages:
+  - build
+  - test
+
+cache:
+  key: key123
+  paths:
+    - vendor/cache
+
+services:
+  - postgres:latest
+
+variables:
+  BUNDLE_PATH: vendor/cache
+  DISABLE_SPRING: 1
+  POSTGRES_HOST_AUTH_METHOD: trust
+  DB_HOST: postgres
+  FRONTEND_URL: localhost
+  HONEYBADGER_API_KEY: testkey
+  RENDER_SERVICE_URL: http://localhost:4000
+  RENDER_SERVICE_USERNAME: test
+  RENDER_SERVICE_PASSWORD: pass
+
+before_script:
+  - gem install bundler
+  - bundle install --path $BUNDLE_PATH --binstubs --jobs $(nproc) "${FLAGS[@]}"
+  - echo "0a72a6d299b5d7838eeb98d7be150761" > ./config/master.key
+
+build_app:
+  stage: build
+  script:
+    - ruby -v
+    - cp config/database.yml.gitlab config/database.yml
+  artifacts:
+    paths:
+      - config/database.yml
+
+rspec tests:
+  stage: test
+  script:
+    - BUNDLE_PATH=$BUNDLE_PATH RAILS_ENV=test bundle exec rake db:create db:schema:load
+    - BUNDLE_PATH=$BUNDLE_PATH RAILS_ENV=test bundle exec rspec

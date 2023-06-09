@@ -1,0 +1,32 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @asset.name %>
+</p>
+
+<p>
+  <strong>Folder:</strong>
+  <%= @asset.asset_folder.name %>
+</p>
+
+<%# For performance reasons we dont compute the variant images for GIFs %>
+<% if @asset.image.content_type == "image/gif" %>
+  <%= image_tag @asset.image %>
+<% elsif @asset.image.content_type == "image/svg+xml" %>
+  <%= image_tag @asset.image, height: 200 %>
+<% else %>
+  <% @asset.variants(@image_settings).each do |variant| %>
+    <h2><%= variant[:name] %></h2>
+    <%= image_tag variant[:url] %>
+  <% end %>
+<% end %>
+
+<div class="button">
+  <%= link_to 'Edit', edit_media_file_path(@asset), class: "ui button" %>
+  <button id='backbutton' class="ui button">Back</button>
+  <script>
+  var el = document.getElementById("backbutton")
+  el.addEventListener('click', function() { history.back() }, false);
+  </script>
+  <%= link_to 'Delete File', media_file_path(@asset), method: :delete, data: { confirm: 'Are you sure?' }, class: "red ui button" %>
+</div>

@@ -1,0 +1,64 @@
+<%= form_with(model: user, local: true, class: "rails-form") do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :user_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, id: :user_password %>
+    <%#= form.text_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.text_field :password_confirmation, id: :user_password_confirmation %>
+    <%#= form.text_field :password %>
+  </div>
+
+
+
+    <strong>Allowed countries</strong>
+
+      <%if current_user.is_admin? %>
+      <div class="switch">
+          <%= check_box_tag "select-all-locales", "yes", false, id: "selectAll" %> 
+          <label for="selectAll"></label>Select all
+      </div>
+      <% end%>
+      <div class="locales">
+      <% SettingService.get_named_locale_variants(current_user).sort_by { |variant| variant[:locale]}.each do |named_locale| %>
+
+          <div class="locales-select"  disabled="<%= !current_user.is_admin?%>"> 
+          <div class="switch">
+            <%= check_box_tag "locales[#{named_locale[:locale]}]", "yes", user.allowed_countries && user.allowed_countries_include?(named_locale[:locale]), disabled: !current_user.is_admin?, id: "#{named_locale[:locale]}" %>
+            <%= label_tag "#{named_locale[:locale]}" %><%= "#{named_locale[:locale]} (#{named_locale[:name]})"%>
+          </div>
+            
+      </div>
+   
+    <% end %>
+
+    <%#= form.text_field :password %>
+  </div>
+
+
+
+  <div class="actions">
+
+     <%= link_to 'Back', users_path, class: "ui button" %>
+    <%= form.submit %>
+  </div>
+<% end %>

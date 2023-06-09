@@ -1,0 +1,57 @@
+
+<p>
+  <strong>
+    Countries:
+  </strong>
+</p>
+<div class="bubble-container">
+<% @last_publishing_manifest.sites.each do |s| %>
+  <span class="bubble">
+    <%= s.name %>
+  </span>
+<% end %>
+</div>
+<p>
+  <strong>
+    Progress:
+  </strong>
+</p>
+<p>
+  <%= @last_publishing_manifest.progress_percent %>
+</p>
+
+
+<p>
+  <strong>
+    Target:
+  </strong>
+</p>
+<p>
+  <%= @last_publishing_manifest.publishing_target.name %>
+</p>
+
+<p>
+  <strong>
+    Results:
+  </strong>
+</p>
+
+<div class="bubble-container">
+<% @last_publishing_manifest.publishing_events.each do |event| %>
+  <span class="bubble <%= event.status %>">
+    <%= link_to publishing_events_show_path(publishing_event: event) do %>
+      <%= event.category.humanize %> Result
+    <% end %>
+  </span>  
+<% end %>
+</div>
+<p>
+  Published: <%=time_ago_in_words @last_publishing_manifest.created_at %> ago by
+  <% if @last_publishing_manifest.user %>
+    <%= @last_publishing_manifest.user.email %>
+    as "<%= @last_publishing_manifest.name %>"
+  <% else %>
+    (User deleted)
+  <% end %>
+</p>
+

@@ -1,0 +1,32 @@
+<%= form_with(model: country_group, local: true, class: "rails-form") do |form| %>
+  <% if country_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(country_group.errors.count, "error") %> prohibited this country_group from being saved:</h2>
+
+      <ul>
+      <% country_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :countries %>
+    <%= form.text_field :countries %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

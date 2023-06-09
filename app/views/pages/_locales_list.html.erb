@@ -1,0 +1,22 @@
+<h2>Languages</h2>
+
+<div class="field">
+
+ <p class="explaination">Select languages</p>
+
+ <p><label>
+  <%= check_box_tag "select-all-locales", "yes", false  %> Select all
+ </label></p>
+
+<div id="locales">
+
+<% SettingService.get_allowed_countries_from_user(current_user).sort_by { |variant| variant[:locale]}.each do |named_locale| %> 
+  <div class="locales-list">
+    <label class="locales-select">
+    <%= check_box_tag "locales[#{named_locale[:locale]}]", "yes", @locales_black_list.include?(named_locale[:locale]) %>
+    <%= "#{named_locale[:locale]} (#{named_locale[:name]})"%>
+    </label>
+  </div>
+<% end %>
+</div>
+</div>

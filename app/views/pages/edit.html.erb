@@ -1,0 +1,11 @@
+<% if current_user.has_skill?(:can_edit_pages) %>
+<h1>Editing Page</h1>
+
+<%= render 'form', page: @page %>
+
+<%= link_to 'Show', @page, class: "ui button" %>
+<%= link_to 'Back', @page, class: "ui button" %>
+
+<% else %>
+<p>Permission denied</p>
+<% end %>

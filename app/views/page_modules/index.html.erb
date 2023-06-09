@@ -1,0 +1,28 @@
+<h1>Page Modules</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Schedule</th>
+      <th>Rank</th>
+      <th>Page</th>
+      <th>Template</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @page_modules.each do |page_module| %>
+      <tr>
+        <td><%= page_module.schedule %></td>
+        <td><%= page_module.rank %></td>
+        <td><%= page_module.pages.map(&:context) %></td>
+        <td><%= page_module.template.name %><br>
+          <%= page_module.id %></td>
+        <td><%= link_to 'Show', page_module %></td>
+        <td><%= link_to 'Edit', edit_page_module_path(page_module) %></td>
+        <td><%= link_to 'Destroy', page_module, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Page Module', new_page_module_path %>

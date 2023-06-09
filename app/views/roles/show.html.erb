@@ -1,0 +1,56 @@
+<h1>Role: <%= @role.name %></h1>
+
+<h2>Details</h2>
+
+<p>
+    <strong>Name:</strong>
+    <%= @role.name %>
+</p>
+
+<h2>Access</h2>
+
+<div id="access">
+  <% Role.all_skills.each do |skill| %>
+    <div class="skill">
+      <% if @role.name == "Admin"%>
+      <div class="switch disabled">
+        <%= check_box_tag "access[#{skill.keys.first}]", "yes", true, :disabled=> true, id: "#{skill.keys.first}" %>
+        <%= label_tag "#{skill.keys.first}" %>
+      </div>
+
+    <% else %> 
+      <div class="switch disabled">
+        <%= check_box_tag "access[#{skill.keys.first}]", "yes", @role.has_skill?(skill.keys.first), :disabled=> true, id: "#{skill.keys.first}"%>
+        <%= label_tag "#{skill.keys.first}" %>
+      </div>
+    <% end %>
+
+  
+      <%= t(skill.keys.first) %>
+    </div>
+
+<% end %>
+</div>
+
+
+<h2>Users</h2>
+
+<ul>
+    <% @userWithRole.each do |user|%>
+        <li>
+        <%= user.email %>
+    <% end%>
+
+</ul>
+
+
+
+
+ <%= link_to 'Back', roles_path, class: "ui button" %>
+<%= link_to edit_role_path(@role), class: "ui button btn-margin" do %> 
+<i class="pencil icon"></i>Edit
+
+<% end%>
+
+
+

@@ -1,0 +1,43 @@
+
+<h1>New Mail</h1>
+
+
+<%= form_for :broadcast_mail, :url => create_broadcast_mail_path(), :method => :post do |form| %>
+
+
+<div class="field">
+  <%= form.label :subject %>
+  <%= form.text_field :subject %>
+  <p class="explaination">The subject of the mail.</p>
+</div>
+
+<div class="field">
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <p class="explaination">The mail title.</p>
+</div>
+
+<div class="field">
+  <%= form.label :subtitle %>
+  <%= form.text_field :subtitle %>
+  <p class="explaination">The mail subtite (optional).</p>
+</div>
+
+<div class="field">
+  <%= form.label :recipients %>
+<%= form.collection_select :recipients, @teams, :id, :name %>
+  <p class="explaination">Send mail to all teams or to a single team.</p>
+</div>
+
+<div class="field">
+  <%= form.label :body %>
+  <%= form.text_area :body %>
+  <p class="explaination">The mail content in markdown.</p>
+</div>
+
+
+
+
+<%= form.submit "Send mail", data: { confirm: 'Are you sure?' }%>
+<% end %>
+

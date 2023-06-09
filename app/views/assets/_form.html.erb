@@ -1,0 +1,51 @@
+<%= form_with(model: asset, url: "/asset_upload/process",local: true, class: "rails-form", id: 'form') do |form| %>
+  <% if asset.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(asset.errors.count, "error") %> prohibited this file from being saved:</h2>
+
+      <ul>
+      <% asset.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <% if @asset.image.attached? %>
+      <%= image_tag @asset.image.variant resize: "100x100>" %>
+    <% end %>
+  </div>
+
+
+
+  <div class="field">
+    <% if current_page?(:controller => 'assets', :action => 'new_asset_in_folder') %>
+      <%= form.file_field :images, multiple: true, direct_upload: true, required: true %>
+    <% else %>
+      <%= form.file_field :images, multiple: true, direct_upload: true, value: @asset.image.filename %>
+    <% end %>
+  </div>
+  <% if current_page?(:controller => 'assets', :action => 'new_asset_in_folder') %>
+    <div class="field" style="display: none;">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :asset_name %>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :asset_name %>
+    </div>
+  <% end %>
+  <%= form.hidden_field :asset_folder_id, value: @asset.asset_folder_id %>
+
+
+  <div class="actions">
+
+<%= link_to asset_folders_path, class: "ui button"  do%>
+  <i class="icon remove"></i>Cancel
+<% end%>
+    <%= form.submit "Done" %>
+
+  </div>
+<% end %>

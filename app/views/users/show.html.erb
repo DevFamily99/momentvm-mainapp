@@ -1,0 +1,39 @@
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+ <%# <p>
+  <strong>Crypted password:</strong>
+  <%#= @user.crypted_password %#>
+</p> %>
+
+ <%# <p>
+  <strong>Salt:</strong> %>
+  <%#= @user.salt %>
+<%# </p>   %>
+
+<p>
+<strong>Allowed countries</strong>
+
+<div class="locales">
+   <% SettingService.get_named_locale_variants(current_user).sort_by { |variant| variant[:locale]}.each do |named_locale| %>
+   
+        <div class="locales-select">
+        <% if @user.allowed_countries &&  @user.allowed_countries_include?(named_locale[:locale])%>
+
+          <div class="switch disabled">
+            <%= check_box_tag "locales[#{named_locale[:locale]}]", "yes", @user.allowed_countries && @user.allowed_countries_include?(named_locale[:locale]),disabled: true, id: "#{named_locale[:locale]} (#{named_locale[:name]})"%>
+            <%= label_tag "#{named_locale[:locale]} (#{named_locale[:name]})" %><%= "#{named_locale[:locale]} (#{named_locale[:name]})"%>
+          </div>
+          <% end %>
+        </div>
+ 
+    <% end %>
+</div>
+
+</p>
+
+<%= link_to 'Back', users_path, class: "ui button" %>
+<%= link_to 'Edit', edit_user_path(@user), class: "ui button" %> 

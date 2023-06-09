@@ -1,0 +1,15 @@
+
+<page-tile>
+<% if page.thumbnail.attached? %>
+	<%= image_tag page.thumb %>
+<% else %>
+	<%= image_tag asset_pack_path 'media/images/page-tile-placeholder.png' %>
+<% end %>
+<%= link_to page_path(page) do %>
+	<p><%= page.name %></p>
+	<p>
+	Last edited by <%= page.last_updated_by %>
+	<%= time_ago_in_words page.updated_at %>
+	</p>
+<% end %>
+</page-tile>

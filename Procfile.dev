@@ -1,0 +1,4 @@
+web: bundle exec puma -C config/puma.rb
+worker: bundle exec sidekiq -t 25 -c3
+webpacker: ./bin/webpack-dev-server
+#webpacker: ./bin/webpack-dev-server --hot --inline --host 127.0.0.1

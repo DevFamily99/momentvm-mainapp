@@ -1,0 +1,47 @@
+<section class="mv-component mv-text" id="module-#(module_id)-id" }>
+    <div class="mv-text__container">
+        <h3>#(headline)</h3>
+
+        <div class="mv-text__paragraph">
+            #(paragraph)
+        </div>
+
+        <div class="mv-text__button">
+            <a href="#if(fact.link.category_id){$url('Search-Show','cgid','#(fact.link.category_id)'#if(fact.link.product_listing_page == true){,'forcelisting', '#(fact.link.product_listing_page)'})$}#if(fact.link.product_id){$url('Product-Show','pid','#(fact.link.product_id)')$}#if(fact.link.content_asset_id){$url('Page-Show','cid','#(fact.link.content_asset_id)')$}#if(fact.link.url){#(fact.link.url)}" #if(fact.link.url){target="_blank"}>   
+              <button>#(button.text)</button>
+            </a>
+          </div>
+          
+        </div>
+    </section>
+    <style>
+
+    .mv-component.mv-text {
+        margin:2rem 0;
+    }
+
+    .mv-component.mv-text .mv-text__container {
+        justify-content:center;
+        display:flex;
+        align-items:center;
+        flex-direction:column;
+    }
+
+    .mv-component.mv-text .mv-text__container  .mv-text__paragraph {
+      margin:2rem;
+        text-align:center;
+        width:50%;
+    }
+
+    .mv-component.mv-text .mv-text__container .mv-text__button button {
+        padding:0.5rem 2rem;
+        background:black;
+        color:white;
+    }
+
+    @media only screen and (max-width: 799px) {
+      .mv-component.mv-text .mv-text__container  .mv-text__paragraph {
+      width:70%;
+      }
+    }
+    </style>

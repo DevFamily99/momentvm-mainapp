@@ -1,0 +1,34 @@
+<h1>Publishing Targets</h1>
+<p>A Publishing Target determines where MOMENTVM will send content to. <br> 
+Later you can freely chose your target for publishing.
+This could be a sandbox, development or staging.</p>
+<% if @publishing_targets.count > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Publishing url</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @publishing_targets.each do |publishing_target| %>
+        <tr>
+          <td><%= publishing_target.name %></td>
+          <td><%= publishing_target.publishing_url %></td>
+          <td><%= link_to 'Show', publishing_target, class: "ui button"  %></td>
+          <td><%= link_to 'Edit', edit_publishing_target_path(publishing_target), class: "ui button" %></td>
+          <td>
+            <%= form_tag publishing_target_path(publishing_target), :method => :delete do %>
+              <%= submit_tag "Destroy", class: "red ui login button", data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br>
+
+<%= link_to 'New Publishing Target', new_publishing_target_path, class: "ui button primary" %>

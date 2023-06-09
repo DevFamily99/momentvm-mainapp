@@ -1,0 +1,144 @@
+<h1>
+  <%= @page.name %>
+</h1>
+
+
+
+<%= render partial: 'classic_control_menu' %>
+
+
+
+<div class="thumbgrid">
+  <div class="publishing-manifest">
+    <h2 class="section-header">Published</h2 class="section-header">
+    <% if @last_publishing_manifest %>
+      <%= render 'manifest' %>
+    <% else %>
+      <p>Not published yet</p>
+    <% end %>
+  </div>
+  <div class="thumb">
+  <% if @page.thumbnail.attached? %>
+    <%= image_tag @page.thumbnail.variant(resize_to_limit: [600, nil], quality: 80) %>
+  <% end %>
+  </div>
+</div>
+
+
+
+
+<h2 class="section-header">Details</h2 class="section-header">
+
+<p><strong>
+<% if @page.context_type == "article" %>
+    Content-Asset ID:
+  <% end %>
+  <% if @page.context_type == "category" %>
+    Category:
+  <% end %>
+  </strong>
+  <%= @page.context %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @page.context_type %>
+  <% if @page.context_type == "article" %>
+    (Content Asset)
+  <% end %>
+</p>
+
+
+
+<h2 class="section-header">Countries</h2 class="section-header">
+
+<% if @page.publishing_locales.length > 0%>
+<ul>
+  <p><strong>Approved:</strong> <br>
+    <% if @approvedSites.length > 0 %>
+      <% @approvedSites.each do |site|%>
+            <%= site[:id] %>
+      <% end %>
+    <% else%>
+   <p>No approved countries yet</p>
+   <% end %>
+
+
+
+   <p><strong>Unapproved:</strong></p>
+    <% if @unapprovedSites.length > 0 %>
+        <% @unapprovedSites.each do |site|%>
+
+              <%= site[:id] %>
+        <% end %>
+      <% else%>
+        <p>No unapproved countries</p>
+      <% end %>
+
+
+  <% else %>
+  <p>No publishing countries yet</p>
+
+  <% end%>
+
+
+  <% if @page.publishing_locales.empty?%>
+    <%= link_to "Add Country", add_publishing_locale_path(@page), class: "ui button" %>
+  <% else%>
+    <%= link_to "Edit Countries", add_publishing_locale_path(@page), class: "ui button" %>
+  <% end %>
+  <%= link_to "Approve Countries", show_page_publishing_locales_path(@page), class: "ui button" %>
+
+</ul>
+
+
+<h2 class="section-header">Publishing state</h2 class="section-header">
+
+<% if page_was_published(@page).nil? %>
+  <p class="important">This <%= @page.context_type.capitalize %> was never published.</p>
+<% else %>
+  <p class="important">This <%= @page.context_type.capitalize %> was published <%= time_ago_in_words page_was_published(@page).created_at %></p>
+<% end %>
+
+
+
+<h2 class="section-header">History</h2 class="section-header">
+<%= "No changes" if @page.page_activities.empty? %>
+<ul>
+  <% @page.page_activities.last(10).each do |page_activity| %>
+    <li>
+      <div class="<%= page_activity.activity_type %>">
+      </div>
+      <%= page_activity.note %>
+      <%= time_ago_in_words page_activity.created_at %> by <%= page_activity.user ? page_activity.user.email : "System" %>
+    </li>
+  <% end %>
+  <% if @page.page_activities.count > 10 %>
+  ...
+  <% end %>
+</ul>
+
+<h2 class="section-header">Translation Status</h2 class="section-header">
+
+<p>
+  <strong>Translation Status:</strong>
+  <%= @page.translation_status %>
+</p>
+<p>
+  <strong>Translation Key (Document ID in remote system):</strong>
+  <%= @page.translation_key %>
+</p>
+
+<h2 class="section-header">Modules</h2 class="section-header">
+
+<ul>
+<% @page.page_modules.order(rank: :asc).each do |page_module| %>
+  <li>
+    <%= link_to page_module.template.name, edit_page_module_path(page_module, page: @page.id), class: "ui button" %>
+    <%#= page_module.template.name %>
+    <%#= link_to "Versions (#{page_module.versions.size})", versions_page_module_path(page_module), class: "ui button" %>
+    <%= page_module.versions.size %>
+    <%= link_to "Versions", versions_page_module_path(page_module) %>
+  </li>
+<% end %>
+</ul>

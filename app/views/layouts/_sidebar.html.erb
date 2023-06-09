@@ -1,0 +1,57 @@
+<% if current_user %>
+  <div class="sidebar-button">
+    <%= image_tag asset_pack_path 'media/images/thunder.svg' %>
+    <%= link_to "Home", home_index_path %>
+  </div>
+  <div class="sidebar-button">
+    <%= image_tag asset_pack_path 'media/images/pages.svg' %>
+    <%= link_to "Pages", page_folders_path %>
+    <ul slot="submenu">
+      <% if current_user.has_skill? :can_create_pages %>
+        <li><%= link_to "New Page", new_page_in_folder_page_path(@page_root_folder.id || :no_root_folder_error) %></li>
+        <% if current_user.team.name == "STOKKE" %>
+          <li><%= link_to "New Classic Page", new_classic_page_in_folder_page_path(@page_root_folder.id || :no_root_folder_error) %></li>
+        <% end %>
+      <% end%>
+      <li><%= link_to "Archive", page_folder_path(@page_archive_folder || :no_archive_folder_error) %></li>
+      <li><%= link_to "Published", sort_published_pages_path %></li>
+    </ul>
+  </div>
+  <div class="sidebar-button">
+    <%= image_tag asset_pack_path 'media/images/images.svg' %>
+    <%= link_to "Images", asset_folders_path %>
+  </div>
+  <% if (current_user.has_skill? :can_edit_templates) || current_user.is_admin? %>
+    <div class="sidebar-button">
+      <%= image_tag asset_pack_path 'media/images/develop.svg' %>
+      <%= link_to "Templates", templates_path %>
+    </div>
+  <% end %>
+  <% if (current_user.has_skill? :can_edit_settings) || current_user.is_admin? %>
+    <div class="sidebar-button">
+      <%= image_tag asset_pack_path 'media/images/settings.svg' %>
+      <%= link_to "Settings", settings_path, data: { turbolinks: false }  %>
+    </div>
+  <% end %>
+  <div class="sidebar-button">
+    <%= image_tag asset_pack_path 'media/images/guides.svg' %>
+    <%= link_to "How to", ENV["GUIDES_LINK"], target: "_blank" %>
+  </div>
+  <% if current_user.app_admin %>
+    <admin-area>
+      <admin-title>APP Admin</admin-title>
+      <div class="sidebar-button">
+        <%= image_tag asset_pack_path 'media/images/users.svg' %>
+        <%= link_to "Teams", admin_teams_path %>
+      </div>
+      <div class="sidebar-button">
+        <%= image_tag asset_pack_path 'media/images/email.svg' %>
+        <%= link_to "Mail", new_mail_path %>
+      </div>
+      <div class="sidebar-button">
+        <%= image_tag asset_pack_path 'media/images/settings.svg' %>
+        <%= link_to "Plans", admin_plans_path %>
+      </div>
+    </admin-area>
+  <% end %>
+<% end %>

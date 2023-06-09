@@ -1,0 +1,45 @@
+<h1>Select pages</h1>
+<p>
+  Following pages are not yet sent for translation.
+</p>
+
+
+
+<%= form_with url: workflow_validate_pages_path do |form| %>
+  <h2>Recently changed Pages</h2>
+  <% @pages_newer.each do |page| %>
+    <div class="page">
+     <%= hidden_field_tag "pages[#{page.id}]", false %>
+
+    <div class="switch">
+      <%= check_box_tag "pages[#{page.id}]", true, id: "#{page.id}" %>
+      <%= label_tag "#{page.id}"%>
+    </div>
+    <strong><%= label_tag page.name %></strong>
+    <%= label_tag page.updated_at %>
+  
+    </div>
+   
+  <% end %>
+
+  <h2>Older Pages</h2>
+  <% @pages_older.each do |page| %>
+    <div class="page">
+    <%= hidden_field_tag "pages[#{page.id}]", false %>
+
+    <div class="switch">
+      <%= check_box_tag "pages[#{page.id}]", "yes", false , id: "#{page.id}" %>
+      <%= label_tag "#{page.id}" %>
+    </div>
+
+    <strong><%= label_tag page.name %></strong>
+    <%= label_tag page.updated_at %>
+    </div>
+   
+  <% end %>
+
+<%= will_paginate @pages_older  %> 
+
+  <%= form.submit  "Validate pages", :class => "submit_btn"%>
+<% end %>
+

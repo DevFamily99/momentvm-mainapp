@@ -1,0 +1,4 @@
+height:
+  type: string
+  title: spacer height in px
+  default: 100

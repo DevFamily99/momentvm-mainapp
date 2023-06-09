@@ -1,0 +1,56 @@
+<h1>Publishing Activity</h1>
+
+<div class="sort-by-publishing-date">
+  <div class="page headline">
+    <div class="context">
+      ID
+    </div>
+    <div class="name">
+      Page name
+    </div>
+    <div class="updated">
+      Published Date
+    </div>
+    <div class="status">
+      Status
+    </div>
+    <div class="countries">
+      <input
+        class="activity-filter-country"
+        type="text"
+        placeholder="Countries"
+        name=""
+        value="" />
+    </div>
+  
+  </div>
+
+  <% @manifests.each_with_index do |manifest, index| %>
+    <%= link_to page_path(manifest.page) do %>
+      <div class="page" data-key="<%= index %>">
+        <div class="context">
+          <%= manifest.page.context %>
+        </div>
+        <div class="name">
+          <%= manifest.page.name %>
+        </div>
+        <div class="updated">
+          <%= manifest.updated_at.strftime("%d-%m-%Y  %H:%M") %>
+        </div>
+        <div class="status">
+          <% status_codes = [] %>
+          <% manifest.publishing_events.collect do |event| %>
+            <% status_codes.concat(event.message[:message_obj][:status_codes]) %>
+          <% end %>
+          <%= status_codes.map(&:to_s).uniq.join(", ")%>
+        </div>
+        <div class="countries">
+          <%= manifest.page.publishing_locales.map { |loc| loc.locale }.join(", ") %>
+        </div>
+      </div>
+    <% end %>
+
+
+  <% end %>
+
+</div>

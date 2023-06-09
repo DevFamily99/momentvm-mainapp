@@ -1,0 +1,29 @@
+<%# Preview Site %>
+  <div class="ui buttons">
+<div class="preview ui button preview-countries">
+  <div class="ui scrolling dropdown">
+    <div class="text">
+      <i class="paint brush icon"></i>
+      Classic Editor
+    </div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <%= link_to "View Only", view_only_live_preview_page_path(@page, preview_locale: :default, date: :all), class: "item" %>
+      <div class="ui divider"></div>
+
+  <% if current_user.allowed_countries%>
+      <% @publishingSites.each do |country_id, values| %>
+
+      <% if current_user.allowed_countries_include?(country_id)%>
+        <h4><%= values[:name] %></h4>
+        <% values[:locales].each do |locale| %>
+          <%= link_to locale["name"] + " (" + locale["locale"] + ")", live_preview_page_path(@page, preview_locale: locale["locale"] + "-" + country_id, date: :all), class: "item" %>
+        <% end %>
+        <div class="ui divider"></div>
+              <% end %>
+      <% end %>
+  <% end %>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Site Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Library</th>
+      <th>Sites</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @site_groups.each do |site_group| %>
+      <tr>
+        <td><%= site_group.library %></td>
+        <td><%= site_group.sites %></td>
+        <td><%= link_to 'Show', site_group %></td>
+        <td><%= link_to 'Edit', edit_site_group_path(site_group) %></td>
+        <td><%= link_to 'Destroy', site_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Site Group', new_site_group_path %>

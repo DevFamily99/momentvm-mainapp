@@ -1,0 +1,29 @@
+<h1>Import translations</h1>
+
+<p>
+  Please be aware that you may overwrite translations when importing translations with already existing translation IDs.
+</p>
+
+<%= form_for @page, :url => {:action => "upload_translations", :method => :post, :class => "rails-form"} do |f| %> <%#=
+form_tag(model: @page, local: true, id: 'form', action: :upload_translations) do |form| %>
+
+<div class="field">
+  <%= f.file_field 'file' %>
+</div>
+
+<p>Import a translations file in csv format.</p>
+
+<div class="actions">
+  <%= link_to page_path, class: "ui button" do%>
+  <i class="icon remove"></i>Cancel <% end%> <%= f.submit "Done", class: "ui button primary" %> <% end %>
+
+  <script>
+    $('#file_field').change(function() {
+      var filename = this.value
+        .split('\\')
+        .pop()
+        .replace(/\..*$/, '');
+      $('#asset_name').val(filename);
+    });
+  </script>
+</div>
